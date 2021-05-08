@@ -54,11 +54,13 @@ def are_close_enough(particles, precision):
             return False
     return True
 
+
 def evolution(range_a, range_b, precision, particles_number, iterations, c1_weight, c2_weight, c3_weight, neighborhood_distance):
     best_fx = -sys.maxsize
     best_real = 0.0
     local_best = None
     particles_fx_list = []
+    particles_lists = []
     best_fxs = []
     avg_fxs = []
     min_fxs = []
@@ -73,6 +75,7 @@ def evolution(range_a, range_b, precision, particles_number, iterations, c1_weig
                 particle.best_real = particle.real
                 particle.best_fx = particle.fx
 
+        particles_lists.append([particle.real for particle in particles])
         particles_fx_list = [particle.fx for particle in particles]
         local_best = max(particles, key=attrgetter('fx'))
 
@@ -93,7 +96,11 @@ def evolution(range_a, range_b, precision, particles_number, iterations, c1_weig
         if are_close_enough(particles, precision):
             break
 
-    return best_real, best_fx, best_fxs, avg_fxs, min_fxs
+        
+
+    for particle in particles: print(particle)
+    print('')
+    return best_real, best_fx, best_fxs, avg_fxs, min_fxs, particles_lists
 
 
 '''
