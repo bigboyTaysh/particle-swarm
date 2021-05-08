@@ -1,6 +1,6 @@
 from os import path
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from lib.modules import evolution, test_generation
+from lib.modules import evolution
 from time import time
 import numpy
 from PyQt5.QtChart import QChart, QLineSeries, QScatterSeries
@@ -27,12 +27,21 @@ def run_evolution():
     range_a = float(str(form.input_a.text()))
     range_b = float(str(form.input_b.text()))
     precision = int(str(form.input_d.text()))
-    generations_number = int(str(form.input_t.text()))
+    particles_number = int(str(form.input_particles.text()))
+    iterations = int(str(form.input_iterations.text()))
+    c1_weight = int(str(form.input_c1.text())) 
+    c2_weight = int(str(form.input_c2.text()))
+    c3_weight = int(str(form.input_c3.text()))
+    neighborhood_distance = int(str(form.input_neighborhood.text()))
 
     app.setOverrideCursor(QtCore.Qt.WaitCursor)
 
-    best_reals, best_binary, best_fxs, local_fxs, _, _ = evolution(range_a, range_b, precision, generations_number, form.checkBox.isChecked())
+    evolution(range_a, range_b, precision, particles_number, iterations, c1_weight, c2_weight, c3_weight, neighborhood_distance)
 
+    app.restoreOverrideCursor()
+    '''
+    best_reals, best_binary, best_fxs, local_fxs, _, _ = evolution(range_a, range_b, precision, generations_number, form.checkBox.isChecked())
+    
     form.best_table.item(1,0).setText(str(best_reals[len(local_fxs)-1]))
     form.best_table.item(1,1).setText(''.join(map(str, best_binary[len(local_fxs)-1])))
     form.best_table.item(1,2).setText(str(best_fxs[len(local_fxs)-1]))
@@ -85,6 +94,7 @@ def run_evolution():
     chart.axisY().setGridLineColor(QtGui.QColor("grey"))
     form.widget.setChart(chart)
 
+    
     with open('best_history.csv', 'w', newline='', encoding='utf8') as history_csvfile:
         history_writer = csv.writer(
             history_csvfile, delimiter=';', dialect=csv.excel)
@@ -150,8 +160,8 @@ def test_generations():
     chart.axisX().setLabelsColor(QtGui.QColor("white"))
     chart.axisY().setLabelsColor(QtGui.QColor("white"))
     form.widget_test.setChart(chart)
-
+'''
 
 form.button_start.clicked.connect(run_evolution)
-form.button_test_generations.clicked.connect(test_generations)
+#form.button_test_generations.clicked.connect(test_generations)
 app.exec()
