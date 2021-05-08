@@ -1,11 +1,14 @@
 import sys
 
 class Particle(object):
-    def __init__(self, real, fx, best_neighbour=-sys.maxsize):
+    def __init__(self, real, fx):
         self.real = real
         self.fx = fx
-        self.best_real = fx
-        self.best_neighbour = best_neighbour
+        self.best_real = real
+        self.best_fx = fx
+        self.best_neighbour_real = -sys.maxsize
+        self.best_neighbour_fx = -sys.maxsize
+        self.vector = 0
         
 
     def __lt__(self, other):

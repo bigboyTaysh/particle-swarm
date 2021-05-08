@@ -5,12 +5,14 @@ import numpy
 from time import time
 import numba
 from lib.models import Particle
+from random import random, randrange
 
 
 @numba.jit(nopython=True, fastmath=True)
 def random_real(range_a,  range_b,  precision):
     prec = pow(10, precision)
-    return numpy.round(random.randrange(range_a * prec, (range_b) * prec + 1)/prec, precision)
+    return numpy.round(randrange(range_a * prec, (range_b) * prec + 1)/prec, precision)
+
 
 @numba.jit(nopython=True, fastmath=True)
 def func(real):
@@ -25,15 +27,78 @@ def get_individual(range_a, range_b, precision):
 def new_individuals(range_a, range_b, precision, particles_number):
     particles = []
     for _ in range(particles_number):
-        particles.append(get_individual(range_a, range_b, precision)) 
+        particles.append(get_individual(range_a, range_b, precision))
     return particles
 
 
-def evolution(range_a, range_b, precision, particles_number, iterations, c1_weight, c2_weight, c3_weight, neighborhood_distance):
-    particles = new_individuals(range_a, range_b, precision, particles_number)
-    for _ in range(iterations):
-        print(particle) 
+def update_neighbours_best(particles, neighborhood_distance):
+    neighborhood = []
+    for particle in particles:
+        for neighbor in particles:
+            if abs(neighbor.real - particle.real) <= neighborhood_distance and particle.fx > neighbor.best_neighbour_fx:
+                neighbor.best_neighbour_real = particle.real
+                neighbor.best_neighbour_fx = particle.fx
 
+
+def get_vector(particle, c1_weight, c2_weight, c3_weight):
+    return c1_weight * random() * particle.vector + \
+        c2_weight * random() * (particle.best_real - particle.real) + \
+        c3_weight * random() * (particle.best_neighbour_real - particle.real)
+
+
+def are_close_enough(particles, precision):
+    prec = pow(10, -precision)
+    for particle in particles:
+        if not all(list(map(lambda x: True if abs(x.real - particle.real) <= prec else False, particles))):
+            return False
+    return True
+
+def evolution(range_a, range_b, precision, particles_number, iterations, c1_weight, c2_weight, c3_weight, neighborhood_distance):
+    best_fx = -sys.maxsize
+    best_real = 0.0
+    local_best_fx = 0
+    particles_fx_list = []
+    best_fxs = []
+    avg_fxs = []
+    min_fxs = []
+
+    particles = new_individuals(range_a, range_b, precision, particles_number)
+
+    for _ in range(iterations):
+        for particle in particles:
+            particle.fx = func(particle.real)
+
+            if particle.fx > particle.best_fx:
+                particle.best_real = particle.real
+                particle.best_fx = particle.fx
+
+        update_neighbours_best(particles, neighborhood_distance)
+
+        for particle in particles:
+            particle.vector = get_vector(particle, c1_weight, c2_weight, c3_weight)
+            particle.real = round(particle.real + particle.vector, precision)
+
+        local_best_fx = max(particles).fx
+        particles_fx_list = [particle.fx for particle in particles]
+
+        if local_best_fx > best_fx:
+            best_fx = local_best_fx
+            best_real = max(particles).real
+
+        best_fxs.append(best_fx)
+        avg_fxs.append(sum(particles_fx_list) / particles_number)
+        min_fxs.append(min(particles_fx_list))
+
+        if are_close_enough(particles, precision):
+            print(_)
+            break
+    
+    return best_real, best_fx, best_fxs, avg_fxs, min_fxs
+
+        
+
+    for particle in particles : print(particle)
+    print(' ')
 
 '''
 @numba.jit(nopython=True)

@@ -4,7 +4,6 @@ from lib.modules import evolution
 from time import time
 import numpy
 from PyQt5.QtChart import QChart, QLineSeries, QScatterSeries
-from lib.models import Test
 import csv
 import random
 
@@ -29,10 +28,10 @@ def run_evolution():
     precision = int(str(form.input_d.text()))
     particles_number = int(str(form.input_particles.text()))
     iterations = int(str(form.input_iterations.text()))
-    c1_weight = int(str(form.input_c1.text())) 
-    c2_weight = int(str(form.input_c2.text()))
-    c3_weight = int(str(form.input_c3.text()))
-    neighborhood_distance = int(str(form.input_neighborhood.text()))
+    c1_weight = float(str(form.input_c1.text())) 
+    c2_weight = float(str(form.input_c2.text()))
+    c3_weight = float(str(form.input_c3.text()))
+    neighborhood_distance = float(str(form.input_neighborhood.text()))
 
     app.setOverrideCursor(QtCore.Qt.WaitCursor)
 

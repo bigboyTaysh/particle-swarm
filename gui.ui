@@ -527,10 +527,10 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="inputMask">
-       <string>99999</string>
+       <string>9.9</string>
       </property>
       <property name="text">
-       <string>1</string>
+       <string>1.0</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_7">
@@ -566,10 +566,10 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="inputMask">
-       <string>99999</string>
+       <string>9.9</string>
       </property>
       <property name="text">
-       <string>1</string>
+       <string>1.0</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_8">
@@ -605,10 +605,10 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="inputMask">
-       <string>99999</string>
+       <string>9.9</string>
       </property>
       <property name="text">
-       <string>3</string>
+       <string>1.0</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
@@ -739,10 +739,10 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="inputMask">
-       <string>99999</string>
+       <string>99.9</string>
       </property>
       <property name="text">
-       <string>1</string>
+       <string>5.0</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_19">
