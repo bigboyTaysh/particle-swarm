@@ -22,22 +22,72 @@ form.tabWidget.setTabText(0, "Algorytm")
 form.tabWidget.setTabText(1, "Testy")
 window.show()
 
+
 def run_evolution():
     range_a = float(str(form.input_a.text()))
     range_b = float(str(form.input_b.text()))
     precision = int(str(form.input_d.text()))
     particles_number = int(str(form.input_particles.text()))
     iterations = int(str(form.input_iterations.text()))
-    c1_weight = float(str(form.input_c1.text())) 
+    c1_weight = float(str(form.input_c1.text()))
     c2_weight = float(str(form.input_c2.text()))
     c3_weight = float(str(form.input_c3.text()))
     neighborhood_distance = float(str(form.input_neighborhood.text()))
 
     app.setOverrideCursor(QtCore.Qt.WaitCursor)
 
-    evolution(range_a, range_b, precision, particles_number, iterations, c1_weight, c2_weight, c3_weight, neighborhood_distance)
+    best_real, best_fx, best_fxs, avg_fxs, min_fxs = evolution(
+        range_a, range_b, precision, particles_number, iterations, c1_weight, c2_weight, c3_weight, neighborhood_distance)
+
+    chart = QChart()
+    bests = QLineSeries() 
+    avg = QLineSeries() 
+    mins = QLineSeries() 
+
+    pen_best = bests.pen()
+    pen_best.setWidth(1)
+    pen_best.setBrush(QtGui.QColor("red"))
+
+    pen_avg = avg.pen()
+    pen_avg.setWidth(1)
+    pen_avg.setBrush(QtGui.QColor("green"))
+
+    pen_min = mins.pen()
+    pen_min.setWidth(1)
+    pen_min.setBrush(QtGui.QColor("blue"))
+
+    bests.setPen(pen_best)
+    avg.setPen(pen_avg)
+    mins.setPen(pen_min)
+
+    form.best_table.item(1,0).setText(str(best_real))
+    form.best_table.item(1,2).setText(str(best_fx))
+
+    for i in range(iterations):
+        bests.append(i+1, best_fxs[i])
+        avg.append(i+1, avg_fxs[i])
+        mins.append(i+1, min_fxs[i])
+
+    chart.addSeries(bests)
+    chart.addSeries(avg)
+    chart.addSeries(mins)
+
+    chart.setBackgroundBrush(QtGui.QColor(41, 43, 47))
+    chart.createDefaultAxes()
+    chart.legend().hide()
+    chart.setContentsMargins(-10, -10, -10, -10)
+    chart.layout().setContentsMargins(0, 0, 0, 0)
+    chart.axisX().setTickCount(11)
+    chart.axisX().setLabelsColor(QtGui.QColor("white"))
+    chart.axisX().setGridLineColor(QtGui.QColor("grey"))
+    chart.axisX().setLabelFormat("%i")
+    chart.axisY().setRange(-2,2)
+    chart.axisY().setLabelsColor(QtGui.QColor("white"))
+    chart.axisY().setGridLineColor(QtGui.QColor("grey"))
+    form.widget.setChart(chart)
 
     app.restoreOverrideCursor()
+
     '''
     best_reals, best_binary, best_fxs, local_fxs, _, _ = evolution(range_a, range_b, precision, generations_number, form.checkBox.isChecked())
     
@@ -161,6 +211,7 @@ def test_generations():
     form.widget_test.setChart(chart)
 '''
 
+
 form.button_start.clicked.connect(run_evolution)
-#form.button_test_generations.clicked.connect(test_generations)
+# form.button_test_generations.clicked.connect(test_generations)
 app.exec()

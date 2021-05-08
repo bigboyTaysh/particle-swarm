@@ -6,7 +6,8 @@ from time import time
 import numba
 from lib.models import Particle
 from random import random, randrange
-
+import sys
+from operator import attrgetter
 
 @numba.jit(nopython=True, fastmath=True)
 def random_real(range_a,  range_b,  precision):
@@ -56,7 +57,7 @@ def are_close_enough(particles, precision):
 def evolution(range_a, range_b, precision, particles_number, iterations, c1_weight, c2_weight, c3_weight, neighborhood_distance):
     best_fx = -sys.maxsize
     best_real = 0.0
-    local_best_fx = 0
+    local_best = None
     particles_fx_list = []
     best_fxs = []
     avg_fxs = []
@@ -72,33 +73,28 @@ def evolution(range_a, range_b, precision, particles_number, iterations, c1_weig
                 particle.best_real = particle.real
                 particle.best_fx = particle.fx
 
+        particles_fx_list = [particle.fx for particle in particles]
+        local_best = max(particles, key=attrgetter('fx'))
+
+        if local_best.fx > best_fx:
+            best_fx = local_best.fx
+            best_real = local_best.real
+
+        best_fxs.append(best_fx)
+        avg_fxs.append(sum(particles_fx_list) / particles_number)
+        min_fxs.append(min(particles_fx_list))
+
         update_neighbours_best(particles, neighborhood_distance)
 
         for particle in particles:
             particle.vector = get_vector(particle, c1_weight, c2_weight, c3_weight)
             particle.real = round(particle.real + particle.vector, precision)
 
-        local_best_fx = max(particles).fx
-        particles_fx_list = [particle.fx for particle in particles]
-
-        if local_best_fx > best_fx:
-            best_fx = local_best_fx
-            best_real = max(particles).real
-
-        best_fxs.append(best_fx)
-        avg_fxs.append(sum(particles_fx_list) / particles_number)
-        min_fxs.append(min(particles_fx_list))
-
         if are_close_enough(particles, precision):
-            print(_)
             break
-    
+
     return best_real, best_fx, best_fxs, avg_fxs, min_fxs
 
-        
-
-    for particle in particles : print(particle)
-    print(' ')
 
 '''
 @numba.jit(nopython=True)
