@@ -232,7 +232,7 @@ color: rgb(255, 255, 255);</string>
        <string>99999</string>
       </property>
       <property name="text">
-       <string>10</string>
+       <string>100</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -260,9 +260,9 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>110</y>
-        <width>601</width>
+        <x>300</x>
+        <y>100</y>
+        <width>401</width>
         <height>61</height>
        </rect>
       </property>
@@ -326,7 +326,7 @@ color: rgb(255, 255, 255);</string>
        <number>2</number>
       </property>
       <property name="columnCount">
-       <number>3</number>
+       <number>2</number>
       </property>
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
@@ -376,11 +376,6 @@ color: rgb(255, 255, 255);</string>
       </column>
       <column>
        <property name="text">
-        <string>bin</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
         <string>fx</string>
        </property>
       </column>
@@ -393,14 +388,6 @@ color: rgb(255, 255, 255);</string>
        </property>
       </item>
       <item row="0" column="1">
-       <property name="text">
-        <string>Xbin</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </item>
-      <item row="0" column="2">
        <property name="text">
         <string>fx</string>
        </property>
@@ -433,14 +420,6 @@ color: rgb(255, 255, 255);</string>
         <set>AlignCenter</set>
        </property>
       </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </item>
      </widget>
      <widget class="QChartView" name="widget" native="true">
       <property name="geometry">
@@ -453,25 +432,6 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(41, 43, 47);</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox">
-      <property name="geometry">
-       <rect>
-        <x>590</x>
-        <y>60</y>
-        <width>181</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>zatrzymaj na MAX (10.999)</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLineEdit" name="input_particles">
@@ -491,7 +451,7 @@ color: rgb(255, 255, 255);</string>
        <string>99999</string>
       </property>
       <property name="text">
-       <string>10</string>
+       <string>50</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_6">
@@ -608,7 +568,7 @@ color: rgb(255, 255, 255);</string>
        <string>9.9</string>
       </property>
       <property name="text">
-       <string>1.0</string>
+       <string>1.5</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
@@ -782,50 +742,11 @@ color: rgb(255, 255, 255);</string>
      <attribute name="title">
       <string>Tab 2</string>
      </attribute>
-     <widget class="QLabel" name="label_12">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>40</y>
-        <width>21</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>T</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="input_generations_test">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>40</y>
-        <width>41</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="inputMask">
-       <string>99999</string>
-      </property>
-      <property name="text">
-       <string>1000</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="button_test_generations">
+     <widget class="QPushButton" name="button_test">
       <property name="geometry">
        <rect>
         <x>450</x>
-        <y>70</y>
+        <y>50</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -859,7 +780,7 @@ color: rgb(255, 255, 255);</string>
 color: white;</string>
       </property>
       <property name="text">
-       <string>Testuj pokolenia</string>
+       <string>Testuj</string>
       </property>
      </widget>
      <widget class="QTableWidget" name="test_table">
@@ -870,8 +791,8 @@ color: white;</string>
        <rect>
         <x>10</x>
         <y>120</y>
-        <width>401</width>
-        <height>451</height>
+        <width>981</width>
+        <height>641</height>
        </rect>
       </property>
       <property name="font">
@@ -935,7 +856,7 @@ Header {Background-color: rgb(190,1,1);}</string>
        <number>1</number>
       </property>
       <property name="columnCount">
-       <number>3</number>
+       <number>8</number>
       </property>
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
@@ -944,7 +865,7 @@ Header {Background-color: rgb(190,1,1);}</string>
        <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>133</number>
+       <number>120</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>true</bool>
@@ -956,9 +877,12 @@ Header {Background-color: rgb(190,1,1);}</string>
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderStretchLastSection">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
        <bool>false</bool>
       </attribute>
       <row>
@@ -968,7 +892,7 @@ Header {Background-color: rgb(190,1,1);}</string>
       </row>
       <column>
        <property name="text">
-        <string notr="true">tau</string>
+        <string notr="true">a</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -992,7 +916,7 @@ Header {Background-color: rgb(190,1,1);}</string>
       </column>
       <column>
        <property name="text">
-        <string>T</string>
+        <string>b</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -1016,7 +940,7 @@ Header {Background-color: rgb(190,1,1);}</string>
       </column>
       <column>
        <property name="text">
-        <string>f(x)</string>
+        <string>d</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -1036,11 +960,36 @@ Header {Background-color: rgb(190,1,1);}</string>
           <blue>255</blue>
          </color>
         </brush>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
        </property>
       </column>
       <item row="0" column="0">
        <property name="text">
-        <string>iteracje</string>
+        <string>cząsteczki</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -1048,7 +997,7 @@ Header {Background-color: rgb(190,1,1);}</string>
       </item>
       <item row="0" column="1">
        <property name="text">
-        <string>wystąpienia</string>
+        <string>iteracje</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -1056,25 +1005,52 @@ Header {Background-color: rgb(190,1,1);}</string>
       </item>
       <item row="0" column="2">
        <property name="text">
-        <string>%</string>
+        <string>c1</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
       </item>
-     </widget>
-     <widget class="QChartView" name="widget_test" native="true">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>120</y>
-        <width>571</width>
-        <height>451</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(41, 43, 47);</string>
-      </property>
+      <item row="0" column="3">
+       <property name="text">
+        <string>c2</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="0" column="4">
+       <property name="text">
+        <string>c3</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="0" column="5">
+       <property name="text">
+        <string>sąsiedztwo</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="0" column="6">
+       <property name="text">
+        <string>fmax</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="0" column="7">
+       <property name="text">
+        <string>favg</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
      </widget>
      <widget class="QLineEdit" name="input_a_test">
       <property name="geometry">
