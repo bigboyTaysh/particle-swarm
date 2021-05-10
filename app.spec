@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['app.py'],
-             pathex=['C:\\Users\\wolak\\OneDrive\\SEM I\\isa\\hill-climbing-algorithm'],
+             pathex=['C:\\Users\\wolak\\OneDrive\\SEM I\\isa\\particle-swarm'],
              binaries=[],
              datas=[('gui.ui', '.')],
              hiddenimports=[],
